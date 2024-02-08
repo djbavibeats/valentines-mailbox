@@ -11,11 +11,12 @@ import {
 
 import Mailbox from './Mailbox.jsx'
 import Ground from './Ground.jsx'
+// import HDREnvironment from './HDREnvironment.jsx'
 
-export default function Experience()
+export default function Experience({ glRenderer, glScene })
 {
     const { perfVisible, orbitEnabled } = useControls('General', {
-        perfVisible: true,
+        perfVisible: false,
         orbitEnabled: true
     })
     const { position, scale, visible } = useControls('Mailbox', { 
@@ -55,16 +56,14 @@ export default function Experience()
         <directionalLight 
             castShadow 
             position={ sunPosition }
-            intensity={ 4.5 } 
-
+            intensity={ 2.5 } 
+            color={ '#fbff8c' }
         />
         <Environment 
-            background
-            files="/hdris/hillside_hdri_2k.hdr"
+            preset="sunset"
+            background={ false }
         />
-        <Sky 
-            sunPosition={ sunPosition }
-        />
+       
         <Mailbox 
             position={ { 
                 x: position.x,
@@ -75,14 +74,15 @@ export default function Experience()
             visible={ visible }
         />
 
-        <Clouds material={ THREE.MeshStandardMaterial } scale={ 1.0 } position={[ 0, 0, -1.5 ]}>
+        <Clouds seed material={ THREE.MeshStandardMaterial } scale={ 1.0 } position={[ 0, 0, 0 ]}>
             <Cloud 
-                segments={ 10 } 
+                seed={ 1 }
+                segments={ 5 } 
                 bound={ [ 1, 1, 4 ] } 
                 volume={ 5 }
                 opacity={ 0.25 }
-                speed={ 0.5 } 
-                color="pink" 
+                speed={ 0.25 } 
+                color="#fbff8c" 
             />
         </Clouds>
 

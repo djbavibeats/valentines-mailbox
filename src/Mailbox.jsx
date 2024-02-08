@@ -6,7 +6,7 @@ import { useGLTF } from '@react-three/drei'
 
 export default function Mailbox({ position, scale, visible }) 
 {
-    const { nodes, materials } = useGLTF("/models/mailbox-nomad.glb")
+    const { nodes, materials } = useGLTF("/models/mailbox.glb")
     const [ mailboxDoorState, setMailboxDoorState ] = useState('closed')
     const mailbox = useRef()
     const mailboxDoor = useRef()
