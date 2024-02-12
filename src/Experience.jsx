@@ -11,9 +11,11 @@ import {
 
 import Mailbox from './Mailbox.jsx'
 import Ground from './Ground.jsx'
+import UpdatedMailbox from './UpdatedMailbox.jsx'
+import UpdatedGround from './UpdatedGround.jsx'
 // import HDREnvironment from './HDREnvironment.jsx'
 
-export default function Experience({ glRenderer, glScene })
+export default function Experience({ glRenderer, glScene, popupVisible, setPopupVisible })
 {
     const { perfVisible, orbitEnabled } = useControls('General', {
         perfVisible: false,
@@ -49,22 +51,25 @@ export default function Experience({ glRenderer, glScene })
             <OrbitControls 
                 enableZoom={ false } 
                 enablePan={ false } 
+                enableRotate={ false }
                 maxPolarAngle={ Math.PI / 2 }
+                maxAzimuthAngle={ Math.PI / 2}
             /> 
         }
 
         <directionalLight 
             castShadow 
             position={ sunPosition }
-            intensity={ 2.5 } 
+            intensity={ 3.5 } 
             color={ '#fbff8c' }
+            // color={ '#0f0f0f' }
         />
         <Environment 
             preset="sunset"
             background={ false }
         />
        
-        <Mailbox 
+        {/* <Mailbox 
             position={ { 
                 x: position.x,
                 y: position.y,
@@ -72,6 +77,17 @@ export default function Experience({ glRenderer, glScene })
             } }
             scale={ scale }
             visible={ visible }
+        /> */}
+        <UpdatedMailbox
+            position={ {
+                x:   0.175,
+                y: - 1.29,
+                z:   0.25
+            } }
+            scale={ 1.25 }
+            visible={ true }
+            popupVisible={ popupVisible }
+            setPopupVisible={ setPopupVisible }
         />
 
         <Clouds seed material={ THREE.MeshStandardMaterial } scale={ 1.0 } position={[ 0, 0, 0 ]}>
@@ -89,10 +105,18 @@ export default function Experience({ glRenderer, glScene })
         <Ground 
             position={ { 
                 x: 0,
-                y: -.63,
-                z: -0.1
+                y: -0.865,
+                z: 0.85
             } }
-            scale={ 3 }
+            scale={ 3.5 }
         />
+        {/* <UpdatedGround
+            position={ {
+                x:  0.00,
+                y: -2.0,
+                z: -2.10
+            } }
+            scale={ 5 }
+        /> */}
     </>
 }
