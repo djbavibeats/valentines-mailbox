@@ -14,7 +14,7 @@ function Loader() {
   return <Html className="loading-screen" fullscreen zIndexRange={[ 10, 0 ]}>
     <div className="flex flex-col items-center justify-center h-screen gap-8">
       <img className="w-40" src={ '/images/preloader.gif' } />
-      <p className="text-2xl text-[#fbff8c]">Loading { Math.trunc( progress ) }%</p>
+      <p className="text-2xl text-[#EFDADD]">Loading { Math.trunc( progress ) }%</p>
     </div>
   </Html>
 }
