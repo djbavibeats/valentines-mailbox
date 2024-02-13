@@ -49,13 +49,13 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                     onClick={ closePopup } 
                 />
             </div>
-            <div className="w-full px-8">
+            <div className="w-full md:px-8">
                 { formStep === "form" 
                     &&
                     <form className="form">   
                         <div className="flex gap-4">
                             <div className="pb-4 w-full">
-                                <p className="text-[#272635] text-md pb-2">
+                                <p className="text-[#272635] text-sm md:text-md pb-2">
                                     First Name
                                 </p>
                                 <input
@@ -69,7 +69,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                             </div>
                             {/* Last Name */}
                             <div className="pb-4 w-full">
-                                <p className="text-[#272635] text-md pb-2">
+                                <p className="text-[#272635] text-sm md:text-md pb-2">
                                     Last Name
                                 </p>
                                 <input
@@ -84,7 +84,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Email */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 Email
                             </p>
                             <input
@@ -99,7 +99,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Question 1 */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 What is a moment you were convinced you weren’t enough?
                             </p>
                             <textarea
@@ -114,7 +114,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Question 2 */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 What is a moment you felt like you could do anything?
                             </p>
                             <textarea
@@ -129,7 +129,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Question 3 */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 What is one thing you love about yourself in your strongest moment?
                             </p>
                             <textarea
@@ -144,7 +144,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Question 4 */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 How do you want to evolve or see change in the next year?
                             </p>
                             <textarea
@@ -159,7 +159,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         </div>
                         {/* Question 5 */}
                         <div className="pb-4">
-                            <p className="text-[#272635] text-md pb-2">
+                            <p className="text-[#272635] text-sm md:text-md pb-2">
                                 Write a positive letter to yourself that you can read a year from now:
                             </p>
                             <textarea

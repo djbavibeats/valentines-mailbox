@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useState, useLayoutEffect } from "react"
 import { useGLTF } from "@react-three/drei"
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
@@ -6,23 +6,24 @@ import * as THREE from 'three'
 
 export default function Ground({ position, scale }) {
   const { nodes, materials } = useGLTF("/models/grass.glb")
+  const [ loaded, setLoaded ] = useState(false)
   const grassMaterialRef = useRef()
-  // const { nodes, materials } = useGLTF("/models/ground.glb") 
-  console.log(materials)
+  const groundRef = useRef()
 
-  const [ colorMap, aoMap, heightMap, normalMap, roughnessMap ] = useLoader(TextureLoader, [
-    '/textures/grass-color.jpg',
-    '/textures/grass-ao.jpg',
-    '/textures/grass-height.png',
-    '/textures/grass-normal.jpg',
-    '/textures/grass-roughness.jpg'
+  const [ colorMap, aoMap, heightMap, normalMap, roughnessMap ] = useLoader(TextureLoader, 
+    [
+      '/textures/grass-color.jpg',
+      '/textures/grass-ao.jpg',
+      '/textures/grass-height.png',
+      '/textures/grass-normal.jpg',
+      '/textures/grass-roughness.jpg'
+    ],
+    (loaded) => {
+      setLoaded(true)
+    }
+  )
 
-  ])
-
-  useEffect(() => {
-    // console.log(grassMaterialRef.current.map)
-    // grassMaterialRef.current.map.rotation = Math.PI / - 8
-
+  useLayoutEffect(() => {
     // Color Texture
     colorMap.colorSpace = THREE.SRGBColorSpace
     colorMap.wrapS = THREE.RepeatWrapping
@@ -53,18 +54,23 @@ export default function Ground({ position, scale }) {
     roughnessMap.wrapT = THREE.RepeatWrapping
     roughnessMap.repeat.x = 10
     roughnessMap.repeat.y = 10
-  }, [ materials ])
+
+    
+    grassMaterialRef.current.needsUpdate = true
+    groundRef.current.material.needsUpdate = true
+  }, [ grassMaterialRef, groundRef ])
+
   return (<>
     <group dispose={ null } position={ [ position.x, position.y, position.z ] } scale={ scale }>
       <mesh
         castShadow
         receiveShadow
         geometry={ nodes.Plane.geometry }
-        // material={ materials["Grass.001"] }
+        ref={ groundRef }
       >
         <meshStandardMaterial 
           ref={ grassMaterialRef }
-          color={ '#009911' }
+          color={ '#1b8e4a' }
           map={ colorMap }
           normalMap={ normalMap }
           aoMap={ aoMap }
@@ -72,18 +78,6 @@ export default function Ground({ position, scale }) {
           roughnessMap={ roughnessMap }
         />
       </mesh>
-      {/* <mesh
-        castShadow
-        receiveShadow
-        geometry={ nodes.Plane001_1.geometry }
-        material={ materials.Grass }
-      /> */}
-       {/* <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Plane.geometry}
-        material={materials.Grass}
-      /> */}
     </group>
   </>)
 }

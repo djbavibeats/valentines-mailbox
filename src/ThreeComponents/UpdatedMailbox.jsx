@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
-import { useControls } from 'leva'
-import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 
 export default function UpdatedMailbox({ position, scale, visible, setPopupVisible, popupVisible }) 
@@ -9,7 +7,6 @@ export default function UpdatedMailbox({ position, scale, visible, setPopupVisib
     const { nodes, materials } = useGLTF("/models/updated-mailbox.glb")
     const [ mailboxDoorState, setMailboxDoorState ] = useState('closed')
     const [ cursor, setCursor ] = useState('default')
-    const mailbox = useRef()
     const mailboxDoor = useRef()
     const mailboxDoorHinges = useRef()
     const mailboxFlag = useRef()
@@ -21,14 +18,6 @@ export default function UpdatedMailbox({ position, scale, visible, setPopupVisib
             document.body.style.cursor = "default"
         }
     }, [ cursor ])
-    const { flagRotation } = useControls('Flag', {
-        rotation: {
-            value: 0,
-            min: 0,
-            max: 90,
-            step: 0.1
-        }
-    })
 
     const eventHandler = (event) => {
         if (mailboxDoorState === 'open') {

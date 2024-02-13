@@ -14,7 +14,6 @@ export default function Header() {
                 console.log(`Error: ${err}`)
             }
          } else {
-            // do something else like copying the data to the clipboard
             console.log(`Can't share in this browser`)
          }
     }
