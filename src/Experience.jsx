@@ -9,7 +9,6 @@ import {
     Cloud
 } from '@react-three/drei'
 
-import Mailbox from './Mailbox.jsx'
 import Ground from './Ground.jsx'
 import UpdatedMailbox from './UpdatedMailbox.jsx'
 import BladesOfGrass from './BladesOfGrass.jsx'
@@ -51,11 +50,11 @@ export default function Experience({ glRenderer, glScene, popupVisible, setPopup
         { perfVisible && <Perf position="top-left" /> }
         { orbitEnabled && 
             <OrbitControls 
-                // enableZoom={ false } 
-                // enablePan={ false } 
-                // enableRotate={ false }
-                // maxPolarAngle={ Math.PI / 2 }
-                // maxAzimuthAngle={ Math.PI / 2}
+                enableZoom={ false } 
+                enablePan={ false } 
+                enableRotate={ false }
+                maxPolarAngle={ Math.PI / 2 }
+                maxAzimuthAngle={ Math.PI / 2}
             /> 
         }
 
@@ -71,16 +70,7 @@ export default function Experience({ glRenderer, glScene, popupVisible, setPopup
             preset="sunset"
             background={ false }
         />
-       
-        {/* <Mailbox 
-            position={ { 
-                x: position.x,
-                y: position.y,
-                z: - 0.5
-            } }
-            scale={ scale }
-            visible={ visible }
-        /> */}
+ 
         <UpdatedMailbox
             position={ {
                 x:   0.175,
