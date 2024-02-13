@@ -12,7 +12,9 @@ import {
 import Mailbox from './Mailbox.jsx'
 import Ground from './Ground.jsx'
 import UpdatedMailbox from './UpdatedMailbox.jsx'
+import BladesOfGrass from './BladesOfGrass.jsx'
 import UpdatedGround from './UpdatedGround.jsx'
+import Fence from './Fence.jsx'
 // import HDREnvironment from './HDREnvironment.jsx'
 
 export default function Experience({ glRenderer, glScene, popupVisible, setPopupVisible })
@@ -42,25 +44,26 @@ export default function Experience({ glRenderer, glScene, popupVisible, setPopup
         visible: true
     })
     const { sunPosition } = useControls('sky', {
-        sunPosition: { value: [ 1, 2, 3 ] }
+        sunPosition: { value: [ 2, 4, 3 ] }
     })
     
     return <>
         { perfVisible && <Perf position="top-left" /> }
         { orbitEnabled && 
             <OrbitControls 
-                enableZoom={ false } 
-                enablePan={ false } 
-                enableRotate={ false }
-                maxPolarAngle={ Math.PI / 2 }
-                maxAzimuthAngle={ Math.PI / 2}
+                // enableZoom={ false } 
+                // enablePan={ false } 
+                // enableRotate={ false }
+                // maxPolarAngle={ Math.PI / 2 }
+                // maxAzimuthAngle={ Math.PI / 2}
             /> 
         }
 
         <directionalLight 
             castShadow 
             position={ sunPosition }
-            intensity={ 3.5 } 
+            intensity={ 1.5 }
+            scale={ 5 } 
             color={ '#fbff8c' }
             // color={ '#0f0f0f' }
         />
@@ -89,10 +92,18 @@ export default function Experience({ glRenderer, glScene, popupVisible, setPopup
             popupVisible={ popupVisible }
             setPopupVisible={ setPopupVisible }
         />
+        <BladesOfGrass
+            position={ {
+                x:   0.175,
+                y: - 1.29,
+                z:   0.25
+            } }
+            scale={ 1.25 }
+        />
 
         <Clouds seed material={ THREE.MeshStandardMaterial } scale={ 1.0 } position={[ 0, 0, 0 ]}>
             <Cloud 
-                seed={ 1 }
+                seed={ 2 }
                 segments={ 5 } 
                 bound={ [ 1, 1, 4 ] } 
                 volume={ 5 }
@@ -109,6 +120,15 @@ export default function Experience({ glRenderer, glScene, popupVisible, setPopup
                 z: 0.85
             } }
             scale={ 3.5 }
+        />
+
+        <Fence 
+            position={ { 
+                x: 0.4,
+                y: - 0.9,
+                z: 0.3
+            } }
+            scale={ 3.4 }
         />
         {/* <UpdatedGround
             position={ {
