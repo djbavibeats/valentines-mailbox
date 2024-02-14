@@ -57,7 +57,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
     }
 
     return (<>
-        <div className="scrollbar-hide w-[95%] md:max-w-[500px] lg:max-w-[850px] m-4 mb-16 px-4 rounded-[30px] overflow-scroll  bg-[#EFDADD] items-center justify-center flex flex-col">
+        <div className="scrollbar-hide w-[95%] md:max-w-[500px] lg:max-w-[850px] m-4 mb-24 px-4 rounded-[30px] overflow-scroll  bg-[#EFDADD] items-center justify-center flex flex-col">
             <div className="py-4 pr-2 w-full flex items-end justify-end">
                 <FontAwesomeIcon 
                     className="hover:cursor-pointer text-[#272635]"
