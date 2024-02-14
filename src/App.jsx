@@ -67,10 +67,6 @@ export default function App() {
       setGlScene(scene)
   }
 
-  const openPresave = () => {
-    window.open('https://leo33.lnk.to/darlin ', '_blank')
-  }
-
     return (<>
     <Leva collapsed hidden />
     <Header />
@@ -78,22 +74,14 @@ export default function App() {
           className="absolute bottom-[0%] py-8 bg-gradient-to-t from-black from-30%  left-0 right-0 z-50 flex items-center justify-center flex-col"
       >
       <div
-        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-2 md:p-4 min-w-[200px] text-center mb-4"
+        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-2 md:p-4 min-w-[200px] text-center mb-2"
         onClick={ () => { 
           setPopupVisible(true) } 
         }
       >
         Writing Prompt
       </div>
-      <p className="mb-4 text-md md:text-xl text-[#EFDADD]">
-        Hey Darlin’, pre-save my new single below
-      </p>
-      <div
-        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-2 md:p-4 min-w-[200px] text-center mb-4"
-        onClick={ openPresave } 
-      >
-        Pre-Save
-      </div>
+      <p className="text-[#EFDADD] text-sm text-center">For the best experience,<br/> please turn your sound on.</p>
     </div>
     <Canvas
       shadows

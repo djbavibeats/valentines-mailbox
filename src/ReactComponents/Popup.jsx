@@ -22,6 +22,10 @@ export default function Popup({ popupVisible, setPopupVisible }) {
         setPopupVisible(false)
     }
 
+    const openPresave = () => {
+        window.open('https://leo33.lnk.to/darlin ', '_blank')
+    }
+
     const handleStepTwoSubmit = () => {
         const formEle = document.querySelector("form")
         const formDatab = new FormData(formEle)
@@ -232,9 +236,24 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         <h3 className="text-2xl mb-4">
                             Thank you! 
                         </h3>
-                        <p>
-                            We'll see you in a year!
+                        <p className="mb-4 text-md md:text-xl text-[#272635]">
+                            Hey Darlin’, pre-save my new single below
                         </p>
+                        <div
+                            className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
+                            onClick={ openPresave } 
+                        >
+                            Pre-Save
+                        </div>
+                        <div 
+                            className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
+                            onClick={ closePopup }
+                        >
+                            Close
+                        </div>
+                        {/* <p>
+                            We'll see you in a year!
+                        </p> */}
                     </div>
                 }
             </div>
@@ -253,16 +272,6 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         Submit
                     </div>
                     </>
-            }
-            {
-                formStep === "confirmation"
-                &&
-                <div 
-                    className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
-                    onClick={ closePopup }
-                >
-                    Close
-                </div>
             }
         </div>
     </>)
