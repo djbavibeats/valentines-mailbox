@@ -53,7 +53,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
     }
 
     return (<>
-        <div className="scrollbar-hide w-[95%] md:max-w-[500px] lg:max-w-[850px] m-4 px-4 rounded-[30px] overflow-scroll  bg-[#EFDADD] items-center justify-center flex flex-col">
+        <div className="scrollbar-hide w-[95%] md:max-w-[500px] lg:max-w-[850px] m-4 mb-16 px-4 rounded-[30px] overflow-scroll  bg-[#EFDADD] items-center justify-center flex flex-col">
             <div className="py-4 pr-2 w-full flex items-end justify-end">
                 <FontAwesomeIcon 
                     className="hover:cursor-pointer text-[#272635]"
@@ -65,8 +65,8 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                 { formStep === "form" 
                     &&
                     <>
-                    <div className="text-[#272635] mb-8">
-                        <p>
+                    <div className="mb-6">
+                        <p className="text-[#272635] text-sm md:text-md">
                         Writing and music have always been crutches to helping me overcome obstacles, 
                         help define clarity and celebrate my growth in becoming who I am. 
                         Writing “Darlin’” was a true moment of reflection, and now I want to see how 
@@ -247,7 +247,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                         <p className="mb-4">Please make sure you've filled out the whole form!</p>
                     }
                     <div 
-                        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
+                        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-8"
                         onClick={ handleStepTwoSubmit }
                     >
                         Submit
