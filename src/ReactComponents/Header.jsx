@@ -1,9 +1,9 @@
 export default function Header() {
     async function share() {
         const shareData = {
-            title: "Jenna Paulette",
-            text: "Valentine's Mailbox",
-            url: "https://www.jennapaulette.com/",
+            title: "Jenna Paulette - Hey Darlin’",
+            text: "Write yourself a ltter and pre-save my new single.",
+            url: "https://hecallsmedarlin.com",
         }
 
         if (navigator.share && navigator.canShare(shareData)) {

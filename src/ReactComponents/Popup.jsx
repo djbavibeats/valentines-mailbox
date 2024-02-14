@@ -12,8 +12,11 @@ export default function Popup({ popupVisible, setPopupVisible }) {
         "question5": "",
         "firstName": "",
         "lastName": "",
-        "email" : ""
+        "email" : "",
+        "consent": false
     })
+    const [ error, setError ] = useState(false)
+    const [ errorText, setErrorText ] = useState("")
 
     const closePopup = () => {
         setPopupVisible(false)
@@ -22,22 +25,31 @@ export default function Popup({ popupVisible, setPopupVisible }) {
     const handleStepTwoSubmit = () => {
         const formEle = document.querySelector("form")
         const formDatab = new FormData(formEle)
-        fetch(
-            "https://script.google.com/macros/s/AKfycbwNSvmTcQi_feU0l6TNSUrI82D-9mwOJvquNx-ko32Rk4dfFiSOg9WaAVbZa-fHCtyxBQ/exec",
-            {
-              method: "POST",
-              body: formDatab,
-            }
-        )
-        .then((res) => res.text())
-        .then((data) => {
-            console.log(data)
-            setFormStep('confirmation')
-
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        console.log(formDatab)
+        console.log(formData)
+        if (!formData.email || !formData.firstName || !formData.lastName || !formData.question1 || !formData.question2 || !formData.question3 || !formData.question4 || !formData.question5) {
+            setError(true)
+            setErrorText("Please make sure you've filled out the whole form!")
+        } else {
+            setFormStep('loading')
+            fetch(
+                 "https://script.google.com/macros/s/AKfycbynQNGnZmLSIzMCbETo9Y6dvdeL8SfvpelaAKMzOzJz943x6bjz5yf4QZ5j_hZOYGIakA/exec",
+                {
+                  method: "POST",
+                  body: formDatab,
+                }
+            )
+            .then((res) => res.text())
+            .then((data) => {
+                setFormStep('confirmation')
+    
+            })
+            .catch((error) => {
+                console.log(error)            
+                setError(true)
+                setErrorText("Something went wrong when sending your letter, please try again.")
+            })
+        }
     }
 
     return (<>
@@ -52,6 +64,17 @@ export default function Popup({ popupVisible, setPopupVisible }) {
             <div className="w-full md:px-8">
                 { formStep === "form" 
                     &&
+                    <>
+                    <div className="text-[#272635] mb-8">
+                        <p>
+                        Writing and music have always been crutches to helping me overcome obstacles, 
+                        help define clarity and celebrate my growth in becoming who I am. 
+                        Writing “Darlin’” was a true moment of reflection, and now I want to see how 
+                        it helps you heal in love. 
+                        <br /><br />
+                        Fill out the below and I’ll send you this back a year from now so you can see just how far you’ve come.
+                        </p>
+                    </div>
                     <form className="form">   
                         <div className="flex gap-4">
                             <div className="pb-4 w-full">
@@ -59,6 +82,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                     First Name
                                 </p>
                                 <input
+                                    required
                                     name="firstName"
                                     className="w-[100%] p-2 rounded-[7.5px]"
                                     value={ formData.firstName } 
@@ -73,6 +97,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                     Last Name
                                 </p>
                                 <input
+                                    required
                                     name="lastName"
                                     className="w-[100%] p-2 rounded-[7.5px]"
                                     value={ formData.lastName } 
@@ -88,6 +113,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 Email
                             </p>
                             <input
+                                required
                                 name="email"
                                 type="email"
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -103,6 +129,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 What is a moment you were convinced you weren’t enough?
                             </p>
                             <textarea
+                                required
                                 name="questionOne"
                                 rows={ 2 }
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -118,6 +145,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 What is a moment you felt like you could do anything?
                             </p>
                             <textarea
+                                required
                                 name="question2"
                                 rows={ 2 }
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -133,6 +161,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 What is one thing you love about yourself in your strongest moment?
                             </p>
                             <textarea
+                                required
                                 name="question3"
                                 rows={ 2 }
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -148,6 +177,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 How do you want to evolve or see change in the next year?
                             </p>
                             <textarea
+                                required
                                 name="question4"
                                 rows={ 2 }
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -163,6 +193,7 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 Write a positive letter to yourself that you can read a year from now:
                             </p>
                             <textarea
+                                required
                                 name="question5"
                                 rows={ 2 } 
                                 className="w-[100%] p-2 rounded-[7.5px]"
@@ -172,7 +203,28 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                                 } }
                             />
                         </div>
+                        <div className="pb-8 flex gap-2 items-center">
+                            <input 
+                                name="consent"
+                                value={ formData.consent }
+                                checked={ formData.consent }
+                                type="checkbox"
+                                className="w-6 h-6 border-2 outline-4"
+                                onChange={ (e) => {
+                                    setFormData({ ...formData, consent: !formData.consent })
+                                }}
+                            />
+                            
+                            <p className="text-[#272635] text-sm md:text-md">Subscribe to newsletter.</p>
+                        </div>
                     </form>
+                    </>
+                }
+                { formStep === "loading" 
+                    &&
+                    <div className="min-h-[250px] flex items-center justify-center flex-col mb-4">
+                        Sending your letter...
+                    </div>
                 }
                 { formStep === "confirmation" 
                     &&
@@ -189,12 +241,18 @@ export default function Popup({ popupVisible, setPopupVisible }) {
             {
                 formStep === "form"
                     &&
+                    <>
+                    { error === true 
+                        &&
+                        <p className="mb-4">Please make sure you've filled out the whole form!</p>
+                    }
                     <div 
                         className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
                         onClick={ handleStepTwoSubmit }
                     >
                         Submit
                     </div>
+                    </>
             }
             {
                 formStep === "confirmation"

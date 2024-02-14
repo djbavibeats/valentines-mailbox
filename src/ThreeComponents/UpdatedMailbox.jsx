@@ -26,6 +26,7 @@ export default function UpdatedMailbox({ position, scale, visible, setPopupVisib
             setMailboxDoorState('open')
         }
     }
+
     useEffect(() => {
         if (mailboxDoorState === 'open' ) {
             gsap.to(mailboxDoor.current.rotation, {
@@ -38,9 +39,9 @@ export default function UpdatedMailbox({ position, scale, visible, setPopupVisib
                 x: 0,
                 delay: 0.125
             })
-            setTimeout(() => {
-                setPopupVisible(true)
-            }, 750)
+            setPopupVisible(true)
+            // setTimeout(() => {
+            // }, 750)
         } else {
             gsap.to(mailboxDoor.current.rotation, {
                 x: 0,
@@ -75,6 +76,18 @@ export default function UpdatedMailbox({ position, scale, visible, setPopupVisib
                 })
                 setMailboxDoorState('closed')
             }, 250)
+        } else {
+            gsap.to(mailboxDoor.current.rotation, {
+                x: Math.PI / 1.125
+            })
+            gsap.to(mailboxDoorHinges.current.rotation, {
+                x: Math.PI / 1.125
+            })
+            gsap.to(mailboxFlag.current.rotation, {
+                x: 0,
+                delay: 0.125
+            })
+            setMailboxDoorState('open')
         }
     }, [ popupVisible ])
 

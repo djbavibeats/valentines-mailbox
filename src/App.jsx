@@ -43,7 +43,8 @@ export default function App() {
     if (popupVisible) {
       setPopupVisible( true )
       gsap.to(popupRef.current, {
-        autoAlpha: 1
+        autoAlpha: 1,
+        delay: 0.5
       })
       sound.current.play()
       sound.current.fade(0.0, 1.0, 1000)
@@ -66,9 +67,34 @@ export default function App() {
       setGlScene(scene)
   }
 
+  const openPresave = () => {
+    window.open('https://leo33.lnk.to/darlin ', '_blank')
+  }
+
     return (<>
     <Leva collapsed hidden />
     <Header />
+    <div
+          className="absolute bottom-[0%] py-8 bg-gradient-to-t from-black from-30%  left-0 right-0 z-50 flex items-center justify-center flex-col"
+      >
+      <div
+        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
+        onClick={ () => { 
+          setPopupVisible(true) } 
+        }
+      >
+        Writing Prompt
+      </div>
+      <p className="mb-4 text-xl text-[#EFDADD]">
+        Hey Darlin’, pre-save my new single below
+      </p>
+      <div
+        className="hover:cursor-pointer hover:scale-110 transition-all duration-[0.5s] rounded-[50px] bg-[#272635] text-[#EFDADD] p-4 min-w-[200px] text-center mb-4"
+        onClick={ openPresave } 
+      >
+        Pre-Save
+      </div>
+    </div>
     <Canvas
       shadows
       camera={ {
