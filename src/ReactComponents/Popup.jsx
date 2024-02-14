@@ -71,10 +71,10 @@ export default function Popup({ popupVisible, setPopupVisible }) {
                     <>
                     <div className="mb-6">
                         <p className="text-[#272635] text-sm md:text-md">
-                        Writing and music have always been crutches to helping me overcome obstacles, 
-                        help define clarity and celebrate my growth in becoming who I am. 
-                        Writing “Darlin’” was a true moment of reflection, and now I want to see how 
-                        it helps you heal in love. 
+                        Writing and music have always been the way I processed to overcome hardship, 
+                        get clarity and then celebrate becoming who I am on the other side. 
+                        Writing “Darlin’” was a raw moment of reflection, and now I want to see how it 
+                        helps others go through the pain to get to a better place in life and in love. 
                         <br /><br />
                         Fill out the below and I’ll send you this back a year from now so you can see just how far you’ve come.
                         </p>
